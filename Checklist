@@ -1,0 +1,9 @@
+CHECKLIST CI/CD
+
+1- Levar o código pro Git
+2- Criar um DockerHub Público
+3- Criar um CI com GitHub Actions
+4- Melhorar a parte de CI
+5- Criar o CD para integrar no Minikube
+6- Notificar o Deploy
+

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        imagePullPolicy: Never
+        image: flask-app:latest
+        env:
+          - name: POSTGRES_HOST
+            value: my-postgresql
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: my-postgresql
+                key: postgres-password
+        ports:
+        - containerPort: 5000

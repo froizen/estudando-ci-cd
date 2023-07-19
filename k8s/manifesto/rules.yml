@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: flask-app-alert
+  labels:
+    app: app
+spec:
+  groups:
+  - name: flask-app-alert
+    rules:
+    - alert: flask-down
+      expr: flask_http_request_duration_seconds_count{status = '500'}
+      for: 15s
+      labels:
+        severity: critical
+      annotations:
+        summary: "Flask-app is Down"
+        description: "Flask app return a request status 500"
